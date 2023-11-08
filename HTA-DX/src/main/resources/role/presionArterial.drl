@@ -1,0 +1,13 @@
+import com.example.dto.PacienteReq;
+import com.example.dto.PacienteResp;
+
+global com.example.dto.PacienteResp     pacienteResp2;
+
+dialect "mvel"
+
+rule "Presion Arterial - OPTIMA"
+when
+    $pacienteReq : PacienteReq( sistolica < 120 && diastolica < 80 )
+then
+    pacienteResp2.presionArterial = "OPTIMA" ;
+end
