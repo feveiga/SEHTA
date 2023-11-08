@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SEHTAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="analisisOrina">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="acido_5_hidrox" Type="Double" />
+    <Property Name="acido_vainillin_man" Type="Double" />
+    <Property Name="cortisol_libre" Type="Double" />
+    <Property Name="epinefrina" Type="Double" />
+    <Property Name="metanefrina" Type="Double" />
+    <Property Name="norepinefrina" Type="Double" />
+    <Property Name="proteinuria" Type="Double" />
+    <Property Name="sodio" Type="Double" />
+    <Property Name="supr_dexa" Type="Double" />
+    <Property Name="tfg" Type="Double" />
+  </EntityType>
+  <EntityType Name="analisisSalival">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cortisol_nocturno" Type="Double" />
+  </EntityType>
+  <EntityType Name="analisisSangre">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="arp" Type="Double" />
+    <Property Name="conc_aldo" Type="Double" />
+    <Property Name="cromogranina_a" Type="Double" />
+    <Property Name="dopamina" Type="Double" />
+    <Property Name="epinefrina" Type="Double" />
+    <Property Name="igf1" Type="Double" />
+    <Property Name="norepinefrina" Type="Double" />
+    <Property Name="serotonina" Type="Double" />
+    <Property Name="t4" Type="Double" />
+    <Property Name="tsh" Type="Double" />
+  </EntityType>
+  <EntityType Name="anamnesis">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ant_poliquistosis" Type="Boolean" />
+    <Property Name="cons_drogdas" Type="Boolean" />
+    <Property Name="cons_farmacos" Type="Boolean" />
+    <Property Name="cons_otras" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="diagnostico">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="nivelPA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="etiologia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idPaciente" Type="Int32" />
+    <Property Name="idAnalisisOrina" Type="Int32" />
+    <Property Name="idAnalisisSangre" Type="Int32" />
+    <Property Name="idPresionArterial" Type="Int32" />
+    <Property Name="idPolisomnografia" Type="Int32" />
+    <Property Name="idEstudioImagen" Type="Int32" />
+    <Property Name="idAnalisisSalival" Type="Int32" />
+    <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="comentario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idAnamnesis" Type="Int32" />
+  </EntityType>
+  <EntityType Name="estudioImagen">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="coartacion" Type="Boolean" />
+    <Property Name="estenosis_renal" Type="Boolean" />
+    <Property Name="quistes" Type="Int32" />
+  </EntityType>
+  <EntityType Name="paciente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dni" Type="Int32" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="edad" Type="Int32" />
+  </EntityType>
+  <EntityType Name="polisomnografia">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iah" Type="Int32" />
+  </EntityType>
+  <EntityType Name="presionArterial">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sistolica" Type="Int32" />
+    <Property Name="diastolica" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="BaseDatos" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="analisisOrina" EntityType="Self.analisisOrina" />
+    <EntitySet Name="analisisSalival" EntityType="Self.analisisSalival" />
+    <EntitySet Name="analisisSangre" EntityType="Self.analisisSangre" />
+    <EntitySet Name="anamnesis" EntityType="Self.anamnesis" />
+    <EntitySet Name="diagnostico" EntityType="Self.diagnostico" />
+    <EntitySet Name="estudioImagen" EntityType="Self.estudioImagen" />
+    <EntitySet Name="paciente" EntityType="Self.paciente" />
+    <EntitySet Name="polisomnografia" EntityType="Self.polisomnografia" />
+    <EntitySet Name="presionArterial" EntityType="Self.presionArterial" />
+    <FunctionImport Name="prc_actualizar_diagnostico">
+      <Parameter Name="idDiagnostico" Mode="In" Type="Int32" />
+      <Parameter Name="estado" Mode="In" Type="String" />
+      <Parameter Name="comentario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="prc_insert_analisis_orina">
+      <Parameter Name="acido_5" Mode="In" Type="Double" />
+      <Parameter Name="acido_vainillin" Mode="In" Type="Double" />
+      <Parameter Name="cortisol" Mode="In" Type="Double" />
+      <Parameter Name="epinefrina" Mode="In" Type="Double" />
+      <Parameter Name="metanefrina" Mode="In" Type="Double" />
+      <Parameter Name="norepinefrina" Mode="In" Type="Double" />
+      <Parameter Name="proteinuria" Mode="In" Type="Double" />
+      <Parameter Name="sodio" Mode="In" Type="Double" />
+      <Parameter Name="supr_dexa" Mode="In" Type="Double" />
+      <Parameter Name="tfg" Mode="In" Type="Double" />
+      <Parameter Name="idInsertado" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prc_insert_analisis_salival">
+      <Parameter Name="cortisol_nocturno" Mode="In" Type="Double" />
+      <Parameter Name="idInsertado" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prc_insert_analisis_sangre">
+      <Parameter Name="arp" Mode="In" Type="Double" />
+      <Parameter Name="conc_aldo" Mode="In" Type="Double" />
+      <Parameter Name="cromogranina" Mode="In" Type="Double" />
+      <Parameter Name="dopamina" Mode="In" Type="Double" />
+      <Parameter Name="epinefrina" Mode="In" Type="Double" />
+      <Parameter Name="igf1" Mode="In" Type="Double" />
+      <Parameter Name="norepinefrina" Mode="In" Type="Double" />
+      <Parameter Name="serotonina" Mode="In" Type="Double" />
+      <Parameter Name="t4" Mode="In" Type="Double" />
+      <Parameter Name="tsh" Mode="In" Type="Double" />
+      <Parameter Name="idInsertado" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prc_insert_anamnesis">
+      <Parameter Name="ant_poli" Mode="In" Type="Boolean" />
+      <Parameter Name="cons_drogas" Mode="In" Type="Boolean" />
+      <Parameter Name="cons_farmacos" Mode="In" Type="Boolean" />
+      <Parameter Name="cons_otras" Mode="In" Type="Boolean" />
+      <Parameter Name="idInsertado" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prc_insert_diagnostico">
+      <Parameter Name="fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="nivelPA" Mode="In" Type="String" />
+      <Parameter Name="etiologia" Mode="In" Type="String" />
+      <Parameter Name="idPaciente" Mode="In" Type="Int32" />
+      <Parameter Name="idAnalisisOrina" Mode="In" Type="Int32" />
+      <Parameter Name="idAnalisisSangre" Mode="In" Type="Int32" />
+      <Parameter Name="idPresionArterial" Mode="In" Type="Int32" />
+      <Parameter Name="idPolisomnografia" Mode="In" Type="Int32" />
+      <Parameter Name="idEstudioImagen" Mode="In" Type="Int32" />
+      <Parameter Name="idAnalisisSalival" Mode="In" Type="Int32" />
+      <Parameter Name="idAnamnesis" Mode="In" Type="Int32" />
+      <Parameter Name="estado" Mode="In" Type="String" />
+      <Parameter Name="comentario" Mode="In" Type="String" />
+      <Parameter Name="idInsertado" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prc_insert_estudio_imagen">
+      <Parameter Name="coartacion" Mode="In" Type="Boolean" />
+      <Parameter Name="estenosis" Mode="In" Type="Boolean" />
+      <Parameter Name="quistes" Mode="In" Type="Int32" />
+      <Parameter Name="idInsertado" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prc_insert_paciente">
+      <Parameter Name="dni" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="apellido" Mode="In" Type="String" />
+      <Parameter Name="edad" Mode="In" Type="String" />
+      <Parameter Name="idInsertado" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prc_insert_polisomnografia">
+      <Parameter Name="iah" Mode="In" Type="Int32" />
+      <Parameter Name="idInsertado" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prc_insert_presion_arterial">
+      <Parameter Name="sistolica" Mode="In" Type="Int32" />
+      <Parameter Name="diastolica" Mode="In" Type="Int32" />
+      <Parameter Name="idInsertado" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

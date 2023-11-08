@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SEHTAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="analisisOrina">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="acido_5_hidrox" Type="float" />
+    <Property Name="acido_vainillin_man" Type="float" />
+    <Property Name="cortisol_libre" Type="float" />
+    <Property Name="epinefrina" Type="float" />
+    <Property Name="metanefrina" Type="float" />
+    <Property Name="norepinefrina" Type="float" />
+    <Property Name="proteinuria" Type="float" />
+    <Property Name="sodio" Type="float" />
+    <Property Name="supr_dexa" Type="float" />
+    <Property Name="tfg" Type="float" />
+  </EntityType>
+  <EntityType Name="analisisSalival">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cortisol_nocturno" Type="float" />
+  </EntityType>
+  <EntityType Name="analisisSangre">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="arp" Type="float" />
+    <Property Name="conc_aldo" Type="float" />
+    <Property Name="cromogranina_a" Type="float" />
+    <Property Name="dopamina" Type="float" />
+    <Property Name="epinefrina" Type="float" />
+    <Property Name="igf1" Type="float" />
+    <Property Name="norepinefrina" Type="float" />
+    <Property Name="serotonina" Type="float" />
+    <Property Name="t4" Type="float" />
+    <Property Name="tsh" Type="float" />
+  </EntityType>
+  <EntityType Name="anamnesis">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ant_poliquistosis" Type="bit" />
+    <Property Name="cons_drogdas" Type="bit" />
+    <Property Name="cons_farmacos" Type="bit" />
+    <Property Name="cons_otras" Type="bit" />
+  </EntityType>
+  <EntityType Name="diagnostico">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="nivelPA" Type="varchar" MaxLength="50" />
+    <Property Name="etiologia" Type="varchar" MaxLength="50" />
+    <Property Name="idPaciente" Type="int" />
+    <Property Name="idAnalisisOrina" Type="int" />
+    <Property Name="idAnalisisSangre" Type="int" />
+    <Property Name="idPresionArterial" Type="int" />
+    <Property Name="idPolisomnografia" Type="int" />
+    <Property Name="idEstudioImagen" Type="int" />
+    <Property Name="idAnalisisSalival" Type="int" />
+    <Property Name="estado" Type="varchar" MaxLength="50" />
+    <Property Name="comentario" Type="varchar" MaxLength="50" />
+    <Property Name="idAnamnesis" Type="int" />
+  </EntityType>
+  <EntityType Name="estudioImagen">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="coartacion" Type="bit" />
+    <Property Name="estenosis_renal" Type="bit" />
+    <Property Name="quistes" Type="int" />
+  </EntityType>
+  <EntityType Name="paciente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dni" Type="int" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="apellido" Type="varchar" MaxLength="50" />
+    <Property Name="edad" Type="int" />
+  </EntityType>
+  <EntityType Name="polisomnografia">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="iah" Type="int" />
+  </EntityType>
+  <EntityType Name="presionArterial">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sistolica" Type="int" />
+    <Property Name="diastolica" Type="int" />
+  </EntityType>
+  <Function Name="prc_actualizar_diagnostico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idDiagnostico" Type="int" Mode="In" />
+    <Parameter Name="estado" Type="varchar" Mode="In" />
+    <Parameter Name="comentario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="prc_insert_analisis_orina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="acido_5" Type="float" Mode="In" />
+    <Parameter Name="acido_vainillin" Type="float" Mode="In" />
+    <Parameter Name="cortisol" Type="float" Mode="In" />
+    <Parameter Name="epinefrina" Type="float" Mode="In" />
+    <Parameter Name="metanefrina" Type="float" Mode="In" />
+    <Parameter Name="norepinefrina" Type="float" Mode="In" />
+    <Parameter Name="proteinuria" Type="float" Mode="In" />
+    <Parameter Name="sodio" Type="float" Mode="In" />
+    <Parameter Name="supr_dexa" Type="float" Mode="In" />
+    <Parameter Name="tfg" Type="float" Mode="In" />
+    <Parameter Name="idInsertado" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="prc_insert_analisis_salival" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cortisol_nocturno" Type="float" Mode="In" />
+    <Parameter Name="idInsertado" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="prc_insert_analisis_sangre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="arp" Type="float" Mode="In" />
+    <Parameter Name="conc_aldo" Type="float" Mode="In" />
+    <Parameter Name="cromogranina" Type="float" Mode="In" />
+    <Parameter Name="dopamina" Type="float" Mode="In" />
+    <Parameter Name="epinefrina" Type="float" Mode="In" />
+    <Parameter Name="igf1" Type="float" Mode="In" />
+    <Parameter Name="norepinefrina" Type="float" Mode="In" />
+    <Parameter Name="serotonina" Type="float" Mode="In" />
+    <Parameter Name="t4" Type="float" Mode="In" />
+    <Parameter Name="tsh" Type="float" Mode="In" />
+    <Parameter Name="idInsertado" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="prc_insert_anamnesis" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ant_poli" Type="bit" Mode="In" />
+    <Parameter Name="cons_drogas" Type="bit" Mode="In" />
+    <Parameter Name="cons_farmacos" Type="bit" Mode="In" />
+    <Parameter Name="cons_otras" Type="bit" Mode="In" />
+    <Parameter Name="idInsertado" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="prc_insert_diagnostico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fecha" Type="date" Mode="In" />
+    <Parameter Name="nivelPA" Type="varchar" Mode="In" />
+    <Parameter Name="etiologia" Type="varchar" Mode="In" />
+    <Parameter Name="idPaciente" Type="int" Mode="In" />
+    <Parameter Name="idAnalisisOrina" Type="int" Mode="In" />
+    <Parameter Name="idAnalisisSangre" Type="int" Mode="In" />
+    <Parameter Name="idPresionArterial" Type="int" Mode="In" />
+    <Parameter Name="idPolisomnografia" Type="int" Mode="In" />
+    <Parameter Name="idEstudioImagen" Type="int" Mode="In" />
+    <Parameter Name="idAnalisisSalival" Type="int" Mode="In" />
+    <Parameter Name="idAnamnesis" Type="int" Mode="In" />
+    <Parameter Name="estado" Type="varchar" Mode="In" />
+    <Parameter Name="comentario" Type="varchar" Mode="In" />
+    <Parameter Name="idInsertado" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="prc_insert_estudio_imagen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="coartacion" Type="bit" Mode="In" />
+    <Parameter Name="estenosis" Type="bit" Mode="In" />
+    <Parameter Name="quistes" Type="int" Mode="In" />
+    <Parameter Name="idInsertado" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="prc_insert_paciente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dni" Type="int" Mode="In" />
+    <Parameter Name="nombre" Type="varchar" Mode="In" />
+    <Parameter Name="apellido" Type="varchar" Mode="In" />
+    <Parameter Name="edad" Type="varchar" Mode="In" />
+    <Parameter Name="idInsertado" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="prc_insert_polisomnografia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="iah" Type="int" Mode="In" />
+    <Parameter Name="idInsertado" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="prc_insert_presion_arterial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sistolica" Type="int" Mode="In" />
+    <Parameter Name="diastolica" Type="int" Mode="In" />
+    <Parameter Name="idInsertado" Type="int" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="SEHTAModelStoreContainer">
+    <EntitySet Name="analisisOrina" EntityType="Self.analisisOrina" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="analisisSalival" EntityType="Self.analisisSalival" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="analisisSangre" EntityType="Self.analisisSangre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="anamnesis" EntityType="Self.anamnesis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="diagnostico" EntityType="Self.diagnostico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="estudioImagen" EntityType="Self.estudioImagen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="paciente" EntityType="Self.paciente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="polisomnografia" EntityType="Self.polisomnografia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="presionArterial" EntityType="Self.presionArterial" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

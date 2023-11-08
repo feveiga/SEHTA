@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SEHTAModelStoreContainer" CdmEntityContainer="BaseDatos">
+    <EntitySetMapping Name="analisisOrina">
+      <EntityTypeMapping TypeName="SEHTAModel.analisisOrina">
+        <MappingFragment StoreEntitySet="analisisOrina">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="acido_5_hidrox" ColumnName="acido_5_hidrox" />
+          <ScalarProperty Name="acido_vainillin_man" ColumnName="acido_vainillin_man" />
+          <ScalarProperty Name="cortisol_libre" ColumnName="cortisol_libre" />
+          <ScalarProperty Name="epinefrina" ColumnName="epinefrina" />
+          <ScalarProperty Name="metanefrina" ColumnName="metanefrina" />
+          <ScalarProperty Name="norepinefrina" ColumnName="norepinefrina" />
+          <ScalarProperty Name="proteinuria" ColumnName="proteinuria" />
+          <ScalarProperty Name="sodio" ColumnName="sodio" />
+          <ScalarProperty Name="supr_dexa" ColumnName="supr_dexa" />
+          <ScalarProperty Name="tfg" ColumnName="tfg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="analisisSalival">
+      <EntityTypeMapping TypeName="SEHTAModel.analisisSalival">
+        <MappingFragment StoreEntitySet="analisisSalival">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cortisol_nocturno" ColumnName="cortisol_nocturno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="analisisSangre">
+      <EntityTypeMapping TypeName="SEHTAModel.analisisSangre">
+        <MappingFragment StoreEntitySet="analisisSangre">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="arp" ColumnName="arp" />
+          <ScalarProperty Name="conc_aldo" ColumnName="conc_aldo" />
+          <ScalarProperty Name="cromogranina_a" ColumnName="cromogranina_a" />
+          <ScalarProperty Name="dopamina" ColumnName="dopamina" />
+          <ScalarProperty Name="epinefrina" ColumnName="epinefrina" />
+          <ScalarProperty Name="igf1" ColumnName="igf1" />
+          <ScalarProperty Name="norepinefrina" ColumnName="norepinefrina" />
+          <ScalarProperty Name="serotonina" ColumnName="serotonina" />
+          <ScalarProperty Name="t4" ColumnName="t4" />
+          <ScalarProperty Name="tsh" ColumnName="tsh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="anamnesis">
+      <EntityTypeMapping TypeName="SEHTAModel.anamnesis">
+        <MappingFragment StoreEntitySet="anamnesis">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ant_poliquistosis" ColumnName="ant_poliquistosis" />
+          <ScalarProperty Name="cons_drogdas" ColumnName="cons_drogdas" />
+          <ScalarProperty Name="cons_farmacos" ColumnName="cons_farmacos" />
+          <ScalarProperty Name="cons_otras" ColumnName="cons_otras" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="diagnostico">
+      <EntityTypeMapping TypeName="SEHTAModel.diagnostico">
+        <MappingFragment StoreEntitySet="diagnostico">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="nivelPA" ColumnName="nivelPA" />
+          <ScalarProperty Name="etiologia" ColumnName="etiologia" />
+          <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+          <ScalarProperty Name="idAnalisisOrina" ColumnName="idAnalisisOrina" />
+          <ScalarProperty Name="idAnalisisSangre" ColumnName="idAnalisisSangre" />
+          <ScalarProperty Name="idPresionArterial" ColumnName="idPresionArterial" />
+          <ScalarProperty Name="idPolisomnografia" ColumnName="idPolisomnografia" />
+          <ScalarProperty Name="idEstudioImagen" ColumnName="idEstudioImagen" />
+          <ScalarProperty Name="idAnalisisSalival" ColumnName="idAnalisisSalival" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="comentario" ColumnName="comentario" />
+          <ScalarProperty Name="idAnamnesis" ColumnName="idAnamnesis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estudioImagen">
+      <EntityTypeMapping TypeName="SEHTAModel.estudioImagen">
+        <MappingFragment StoreEntitySet="estudioImagen">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="coartacion" ColumnName="coartacion" />
+          <ScalarProperty Name="estenosis_renal" ColumnName="estenosis_renal" />
+          <ScalarProperty Name="quistes" ColumnName="quistes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paciente">
+      <EntityTypeMapping TypeName="SEHTAModel.paciente">
+        <MappingFragment StoreEntitySet="paciente">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="edad" ColumnName="edad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="polisomnografia">
+      <EntityTypeMapping TypeName="SEHTAModel.polisomnografia">
+        <MappingFragment StoreEntitySet="polisomnografia">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="iah" ColumnName="iah" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="presionArterial">
+      <EntityTypeMapping TypeName="SEHTAModel.presionArterial">
+        <MappingFragment StoreEntitySet="presionArterial">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="sistolica" ColumnName="sistolica" />
+          <ScalarProperty Name="diastolica" ColumnName="diastolica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="prc_actualizar_diagnostico" FunctionName="SEHTAModel.Store.prc_actualizar_diagnostico" />
+    <FunctionImportMapping FunctionImportName="prc_insert_analisis_orina" FunctionName="SEHTAModel.Store.prc_insert_analisis_orina" />
+    <FunctionImportMapping FunctionImportName="prc_insert_analisis_salival" FunctionName="SEHTAModel.Store.prc_insert_analisis_salival" />
+    <FunctionImportMapping FunctionImportName="prc_insert_analisis_sangre" FunctionName="SEHTAModel.Store.prc_insert_analisis_sangre" />
+    <FunctionImportMapping FunctionImportName="prc_insert_anamnesis" FunctionName="SEHTAModel.Store.prc_insert_anamnesis" />
+    <FunctionImportMapping FunctionImportName="prc_insert_diagnostico" FunctionName="SEHTAModel.Store.prc_insert_diagnostico" />
+    <FunctionImportMapping FunctionImportName="prc_insert_estudio_imagen" FunctionName="SEHTAModel.Store.prc_insert_estudio_imagen" />
+    <FunctionImportMapping FunctionImportName="prc_insert_paciente" FunctionName="SEHTAModel.Store.prc_insert_paciente" />
+    <FunctionImportMapping FunctionImportName="prc_insert_polisomnografia" FunctionName="SEHTAModel.Store.prc_insert_polisomnografia" />
+    <FunctionImportMapping FunctionImportName="prc_insert_presion_arterial" FunctionName="SEHTAModel.Store.prc_insert_presion_arterial" />
+  </EntityContainerMapping>
+</Mapping>
