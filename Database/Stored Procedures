@@ -1,0 +1,370 @@
+
+USE [SEHTA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[prc_actualizar_diagnostico]    Script Date: 8/11/2023 1:33:59 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[prc_actualizar_diagnostico]
+	   @idDiagnostico	int,
+	   @estado		varchar(50),
+	   @comentario		varchar(50)
+AS
+BEGIN
+UPDATE diagnostico	SET 
+	comentario = @comentario ,
+	estado = @estado
+where id = @idDiagnostico
+END
+GO
+
+USE [SEHTA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[prc_insert_analisis_orina]    Script Date: 8/11/2023 1:34:06 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[prc_insert_analisis_orina]
+	   @acido_5				float,
+	   @acido_vainillin		float,
+	   @cortisol			float,
+	   @epinefrina			float,
+	   @metanefrina			float,
+	   @norepinefrina		float,
+	   @proteinuria			float,
+	   @sodio				float,
+	   @supr_dexa			float,
+	   @tfg					float,
+	   @idInsertado INT = NULL OUTPUT
+AS
+BEGIN
+INSERT INTO analisisOrina(
+	acido_5_hidrox,
+	acido_vainillin_man,
+	cortisol_libre,
+	epinefrina,
+	metanefrina,
+	norepinefrina,
+	proteinuria,
+	sodio,
+	supr_dexa,
+	tfg )
+    VALUES (
+	   @acido_5,
+	   @acido_vainillin,
+	   @cortisol,
+	   @epinefrina,
+	   @metanefrina,
+	   @norepinefrina,
+	   @proteinuria,
+	   @sodio,
+	   @supr_dexa,
+	   @tfg
+	   )
+SET @idInsertado = SCOPE_IDENTITY();
+
+END
+GO
+
+USE [SEHTA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[prc_insert_analisis_salival]    Script Date: 8/11/2023 1:34:12 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[prc_insert_analisis_salival]
+	   @cortisol_nocturno			float,
+	   @idInsertado INT = NULL OUTPUT
+AS
+BEGIN
+INSERT INTO analisisSalival(
+	cortisol_nocturno
+	 )
+    VALUES (
+		@cortisol_nocturno		
+	   )
+SET @idInsertado = SCOPE_IDENTITY();
+END
+GO
+
+USE [SEHTA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[prc_insert_analisis_sangre]    Script Date: 8/11/2023 1:34:18 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[prc_insert_analisis_sangre]
+	   @arp			float,
+	   @conc_aldo		float,
+	   @cromogranina			float,
+	   @dopamina			float,
+	   @epinefrina			float,
+	   @igf1		float,
+	   @norepinefrina			float,
+	   @serotonina				float,
+	   @t4			float,
+	   @tsh					float,
+	   @idInsertado INT = NULL OUTPUT
+AS
+BEGIN
+INSERT INTO analisisSangre(
+	arp,
+	conc_aldo,
+	cromogranina_a,
+	dopamina,
+	epinefrina,
+	igf1,
+	norepinefrina,
+	serotonina,
+	t4,
+	tsh )
+    VALUES (
+		@arp		,
+		@conc_aldo	,
+		@cromogranina,
+		@dopamina	,
+		@epinefrina,
+		@igf1,
+		@norepinefrina,
+		@serotonina,
+		@t4	,
+		@tsh
+	   )
+SET @idInsertado = SCOPE_IDENTITY();
+
+END
+GO
+
+USE [SEHTA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[prc_insert_anamnesis]    Script Date: 8/11/2023 1:34:25 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[prc_insert_anamnesis]
+		@ant_poli		bit,
+		@cons_drogas	bit,
+		@cons_farmacos  bit,
+		@cons_otras		bit,
+	    @idInsertado INT = NULL OUTPUT
+AS
+BEGIN
+INSERT INTO anamnesis(
+	ant_poliquistosis,cons_drogdas,cons_farmacos,cons_otras
+	 )
+    VALUES (
+		@ant_poli,@cons_drogas,@cons_farmacos,@cons_otras	
+	   )
+SET @idInsertado = SCOPE_IDENTITY();
+END
+GO
+
+USE [SEHTA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[prc_insert_diagnostico]    Script Date: 8/11/2023 1:34:33 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[prc_insert_diagnostico]
+		@fecha			date,
+		@nivelPA		VARCHAR(50),
+		@etiologia		VARCHAR(50),
+		@idPaciente		int,
+		@idAnalisisOrina	int,
+		@idAnalisisSangre	int,
+		@idPresionArterial	int,
+		@idPolisomnografia	int,
+		@idEstudioImagen	int,
+		@idAnalisisSalival	int,
+		@idAnamnesis		int,
+		@estado				varchar(50),
+		@comentario			varchar(50),
+	    @idInsertado INT = NULL OUTPUT
+AS
+BEGIN
+INSERT INTO diagnostico(
+	 fecha,nivelPA,etiologia,idPaciente,idAnalisisOrina,idAnalisisSangre,idPresionArterial,idPolisomnografia,idEstudioImagen,idAnalisisSalival,idAnamnesis,estado,comentario
+	 )
+    VALUES (
+		@fecha,@nivelPA,@etiologia,@idPaciente,@idAnalisisOrina,@idAnalisisSangre,@idPresionArterial,@idPolisomnografia,@idEstudioImagen,@idAnalisisSalival,@idAnamnesis,@estado,@comentario	
+	   )
+SET @idInsertado = SCOPE_IDENTITY();
+END
+GO
+
+USE [SEHTA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[prc_insert_estudio_imagen]    Script Date: 8/11/2023 1:34:38 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[prc_insert_estudio_imagen]
+		@coartacion			bit,
+		@estenosis		bit,
+		@quistes		int,
+	    @idInsertado INT = NULL OUTPUT
+AS
+BEGIN
+INSERT INTO estudioImagen(
+	 coartacion,estenosis_renal,quistes
+	 )
+    VALUES (
+		@coartacion,@estenosis,@quistes
+	   )
+SET @idInsertado = SCOPE_IDENTITY();
+END
+GO
+
+USE [SEHTA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[prc_insert_paciente]    Script Date: 8/11/2023 1:34:45 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[prc_insert_paciente]
+	   @dni			int,
+	   @nombre		varchar(50),
+	   @apellido	varchar(50),
+	   @edad		varchar(50),
+	   @idInsertado INT = NULL OUTPUT
+AS
+BEGIN
+INSERT INTO paciente  (
+	   nombre,
+	   apellido,
+	   edad,
+	   dni)
+    VALUES (
+	   @nombre,
+	   @apellido,
+	   @edad,
+	   @dni)
+ 
+SET @idInsertado = SCOPE_IDENTITY();
+
+END
+GO
+
+USE [SEHTA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[prc_insert_polisomnografia]    Script Date: 8/11/2023 1:34:51 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[prc_insert_polisomnografia]
+		@iah	int,
+	    @idInsertado INT = NULL OUTPUT
+AS
+BEGIN
+INSERT INTO polisomnografia(
+	 iah)
+    VALUES (
+	   @iah)
+SET @idInsertado = SCOPE_IDENTITY();
+END
+GO
+
+USE [SEHTA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[prc_insert_presion_arterial]    Script Date: 8/11/2023 1:34:57 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[prc_insert_presion_arterial]
+		@sistolica	int,
+		@diastolica	int,
+	    @idInsertado INT = NULL OUTPUT
+AS
+BEGIN
+INSERT INTO presionArterial(
+	 sistolica,diastolica)
+    VALUES (
+	   @sistolica,@diastolica)
+SET @idInsertado = SCOPE_IDENTITY();
+END
+GO
+
+USE [SEHTA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[prc_obtener_dxs_nuevos]    Script Date: 8/11/2023 1:35:03 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[prc_obtener_dxs_nuevos]
+AS
+Select	
+		dx.id,
+		edad,
+		sistolica, diastolica ,
+		arp,conc_aldo,cromogranina_a,dopamina,sangre.epinefrina,igf1,sangre.norepinefrina,serotonina,t4,tsh,
+		acido_5_hidrox,acido_vainillin_man,cortisol_libre,orina.epinefrina,orina.norepinefrina,proteinuria,sodio,supr_dexa,tfg,
+		coartacion,estenosis_renal,quistes,
+		iah,
+		cortisol_nocturno,
+		ant_poliquistosis,cons_drogdas,cons_otras,cons_farmacos,
+		nivelPA,etiologia,estado,comentario 
+from 
+    SEHTA.dbo.diagnostico       dx,
+    SEHTA.dbo.paciente          pa,
+    SEHTA.dbo.analisisSangre    sangre,
+    SEHTA.dbo.analisisSalival   saliva,
+    SEHTA.dbo.analisisOrina     orina,
+    SEHTA.dbo.anamnesis         ana,
+    SEHTA.dbo.estudioImagen     img,
+    SEHTA.dbo.polisomnografia   poli,
+	SEHTA.dbo.presionArterial	presArt
+where
+    dx.idPaciente = pa.id               AND
+    dx.idAnalisisSangre = sangre.id     AND
+    dx.idAnalisisSalival = saliva.id    AND
+    dx.idAnalisisOrina  = orina.id      AND
+    dx.idAnamnesis = ana.id             AND
+    dx.idEstudioImagen = img.id         AND
+    dx.idPolisomnografia = poli.id		AND
+	dx.idPresionArterial = presArt.id   
+GO
+
