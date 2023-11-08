@@ -1,0 +1,251 @@
+USE [SEHTA]
+GO
+
+/****** Object:  Table [dbo].[analisisOrina]    Script Date: 8/11/2023 1:30:15 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[analisisOrina](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[acido_5_hidrox] [float] NULL,
+	[acido_vainillin_man] [float] NULL,
+	[cortisol_libre] [float] NULL,
+	[epinefrina] [float] NULL,
+	[metanefrina] [float] NULL,
+	[norepinefrina] [float] NULL,
+	[proteinuria] [float] NULL,
+	[sodio] [float] NULL,
+	[supr_dexa] [float] NULL,
+	[tfg] [float] NULL,
+ CONSTRAINT [PK_analisisOrina] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+-- Crear tabla AnalisisSalival
+USE [SEHTA]
+GO
+
+/****** Object:  Table [dbo].[analisisSalival]    Script Date: 8/11/2023 1:30:30 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[analisisSalival](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[cortisol_nocturno] [float] NULL,
+ CONSTRAINT [PK_analisisSalival] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+-- crear tabla Analisis Sangre
+USE [SEHTA]
+GO
+
+/****** Object:  Table [dbo].[analisisSangre]    Script Date: 8/11/2023 1:30:55 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[analisisSangre](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[arp] [float] NULL,
+	[conc_aldo] [float] NULL,
+	[cromogranina_a] [float] NULL,
+	[dopamina] [float] NULL,
+	[epinefrina] [float] NULL,
+	[igf1] [float] NULL,
+	[norepinefrina] [float] NULL,
+	[serotonina] [float] NULL,
+	[t4] [float] NULL,
+	[tsh] [float] NULL,
+ CONSTRAINT [PK_analisisSangre] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+-- crear tabla anamnesis
+USE [SEHTA]
+GO
+
+/****** Object:  Table [dbo].[anamnesis]    Script Date: 8/11/2023 1:31:17 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[anamnesis](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[ant_poliquistosis] [bit] NULL,
+	[cons_drogdas] [bit] NULL,
+	[cons_farmacos] [bit] NULL,
+	[cons_otras] [bit] NULL,
+ CONSTRAINT [PK_anamnesis] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+-- crear tabla diagnostico
+USE [SEHTA]
+GO
+
+/****** Object:  Table [dbo].[diagnostico]    Script Date: 8/11/2023 1:31:31 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[diagnostico](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[fecha] [date] NULL,
+	[nivelPA] [varchar](50) NULL,
+	[etiologia] [varchar](50) NULL,
+	[idPaciente] [int] NULL,
+	[idAnalisisOrina] [int] NULL,
+	[idAnalisisSangre] [int] NULL,
+	[idPresionArterial] [int] NULL,
+	[idPolisomnografia] [int] NULL,
+	[idEstudioImagen] [int] NULL,
+	[idAnalisisSalival] [int] NULL,
+	[estado] [varchar](50) NULL,
+	[comentario] [varchar](50) NULL,
+	[idAnamnesis] [int] NULL,
+ CONSTRAINT [PK_diagnostico] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+-- crear tabla estudioImagen
+USE [SEHTA]
+GO
+
+/****** Object:  Table [dbo].[estudioImagen]    Script Date: 8/11/2023 1:32:20 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[estudioImagen](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[coartacion] [bit] NULL,
+	[estenosis_renal] [bit] NULL,
+	[quistes] [int] NULL,
+ CONSTRAINT [PK_estudioImagen] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+-- crear tabla paciente
+USE [SEHTA]
+GO
+
+/****** Object:  Table [dbo].[paciente]    Script Date: 8/11/2023 1:32:31 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[paciente](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[dni] [int] NULL,
+	[nombre] [varchar](50) NULL,
+	[apellido] [varchar](50) NULL,
+	[edad] [int] NULL,
+ CONSTRAINT [PK_paciente2] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+-- crear tabla polisomnografia
+USE [SEHTA]
+GO
+
+/****** Object:  Table [dbo].[polisomnografia]    Script Date: 8/11/2023 1:32:40 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[polisomnografia](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[iah] [int] NULL,
+ CONSTRAINT [PK_polisomnografia] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+-- crear tabla presionArterial
+USE [SEHTA]
+GO
+
+/****** Object:  Table [dbo].[presionArterial]    Script Date: 8/11/2023 1:32:47 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[presionArterial](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[sistolica] [int] NULL,
+	[diastolica] [int] NULL,
+ CONSTRAINT [PK_presionArterial] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+-- crear tabla reglas_diagnostico
+
+USE [SEHTA]
+GO
+
+/****** Object:  Table [dbo].[reglas_diagnostico]    Script Date: 8/11/2023 1:32:56 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[reglas_diagnostico](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[idDx] [int] NULL,
+	[regla] [varchar](50) NULL
+) ON [PRIMARY]
+GO
+
